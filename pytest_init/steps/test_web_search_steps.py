@@ -1,12 +1,13 @@
-from pytest_bdd import given, when, scenarios, parsers
+from pytest_bdd import given, when, then, scenarios, parsers
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as exp_conditions
 
 scenarios('../features/search.feature')
 
 LOGO = (By.CSS_SELECTOR, '[id="navbar"] img[class="navbar-logo-img"]')
-INPUT_SEARCH_FIELD = (By.CSS_SELECTOR, '[id="navbar"] input[id="search-input"]')
-BTN_SEARCH = (By.CSS_SELECTOR, '[id="navbar"] button[class*="search"]')
+INPUT_SEARCH_FIELD = (By.XPATH, '//input[@id="search-text"]')
+BTN_SEARCH = (By.CSS_SELECTOR, 'button[id="search-lens-btn"]')
+TXT_SEARCH_QUERY = (By.ID, 'search-query-label')
 
 
 @given('the user is in the numerade home screen')
@@ -24,3 +25,7 @@ def impl(driver, word):
 @when('He clicks on search button')
 def impl(driver):
     driver.wait.until(exp_conditions.visibility_of_element_located(BTN_SEARCH)).click()
+
+@then('the result screen should be displayed')
+def impl(driver):
+  driver.wait.until(exp_conditions.visibility_of_element_located(TXT_SEARCH_QUERY))

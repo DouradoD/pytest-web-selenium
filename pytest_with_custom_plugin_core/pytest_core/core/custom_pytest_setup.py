@@ -21,6 +21,7 @@ def pytest_addoption(parser):
 def driver(request):
     session_info = SessionInfo(request_config=request.config)
     custom_driver = CustomerDriver(session_info=session_info)
+
     driver = custom_driver.driver(timeout=15)
     driver.maximize_window()
     print('Finished to create the driver!')

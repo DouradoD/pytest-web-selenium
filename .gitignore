@@ -4,3 +4,5 @@ __pycache__
 pytest_with_custom_plugin_core/pytest_core/build
 pytest_with_custom_plugin_core/pytest_core/pytest_core.egg-info
 pytest_with_custom_plugin_core/pytest_core/core.egg-info
+.venv
+.venv/*
